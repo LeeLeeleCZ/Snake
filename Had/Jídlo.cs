@@ -15,8 +15,8 @@ namespace Had
         private int y;
         public Jídlo()
         {
-            x = rnd.Next(2, 40) * 20;
-            y = rnd.Next(2, 40) * 20;
+            x = rnd.Next(2, 37) * 20;
+            y = rnd.Next(2, 37) * 20;
             this.BackColor = barva;
             this.AutoSize = false;
             this.Width = 20;
@@ -26,8 +26,8 @@ namespace Had
 
         public void Next()
         {
-            x = rnd.Next(0, 39) * 20;
-            y = rnd.Next(0, 38) * 20;
+            x = rnd.Next(0, 37) * 20;
+            y = rnd.Next(0, 37) * 20;
             this.Location = new Point(x, y);
         }
     }

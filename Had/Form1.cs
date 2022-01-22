@@ -23,7 +23,7 @@ namespace Had
                 devInfo = new DevInfo(this);
                 devInfo.Show();
                 Point point = food.Location;
-                DataSent("Food " + Convert.ToString(point.X / 10) + ";" + Convert.ToString(point.Y / 10));
+                DataSent("Food " + Convert.ToString(point.X / 10) + ":" + Convert.ToString(point.Y / 10));
             }
             PøidatDíl();
             PøidatDíl();
@@ -63,6 +63,14 @@ namespace Had
             }
         }
 
+        void Konec()
+        {
+            timer1.Enabled = false;
+            MessageBox.Show("You died!" + "\n" + $"Your score: {skore}");
+            Application.Restart();
+            Environment.Exit(0);
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             head.StaraLokace = head.Location;
@@ -83,15 +91,20 @@ namespace Had
                 default:
                     break;
             }
+
             PohybTela();
+
+            foreach (Telo lbl in telo)
+            {
+                if(lbl.Location == head.Location)
+                    Konec();
+            }
+
             Point point = head.Location;
-            DataSent("Head "+Convert.ToString(point.X / 10) +";"+ Convert.ToString(point.Y / 10));
+            DataSent("Head "+Convert.ToString(point.X / 10) +":"+ Convert.ToString(point.Y / 10));
             if (head.X < 0 || head.X > 760 || head.Y < 0 || head.Y > 740)
             {
-                timer1.Enabled = false;
-                MessageBox.Show("Prohráli jste!" + "\n" + $"Vaše skóre: {skore}");
-                Application.Restart();
-                Environment.Exit(0);
+                Konec();
             }
             if(head.Location == food.Location)
             {
@@ -99,10 +112,10 @@ namespace Had
                 PøidatDíl();
                 food.Next();
                 point = food.Location;
-                DataSent("Food "+Convert.ToString(point.X/10)+";"+Convert.ToString(point.Y/10));
+                DataSent("Food "+Convert.ToString(point.X/10)+":"+Convert.ToString(point.Y/10));
                 DataSent("Skore " + Convert.ToString(skore));
             }
-            this.Text = Convert.ToString(skore);
+            //this.Text = Convert.ToString(skore);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -127,6 +140,16 @@ namespace Had
                         head.Smer = smer.doleva;
                     break;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            DataSent(Convert.ToString(this.Location.X)+";"+ Convert.ToString(this.Location.Y));
+        }
+
+        private void Form1_Move(object sender, EventArgs e)
+        {
+            DataSent(Convert.ToString(this.Location.X) + ";" + Convert.ToString(this.Location.Y));
         }
     }
 }

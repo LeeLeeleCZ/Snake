@@ -19,12 +19,19 @@ namespace Had
             InitializeComponent();
             data = parent;
             data.DataSent += Aktualizuj;
-            //Point Start = this.Location;
+            
             //this.Location = new Point(Start.X =- 0, Start.Y =- 0);
         }
 
         private void Aktualizuj(string msg)
         {
+            if(msg.Contains(";"))
+            {
+                string[] lokace = msg.Split(';');
+                this.Location = new Point(Convert.ToInt32(lokace[0])-269, Convert.ToInt32(lokace[1]));
+                return;
+            }
+
             string type = msg.Split(' ')[0];
             string data = msg.Split(' ')[1];
 
@@ -46,9 +53,14 @@ namespace Had
             }
         }
 
+        private void Aktualizuj(Point point)
+        {
+
+        }
+
         private void DevInfo_Load(object sender, EventArgs e)
         {
-           
+            
         }
     }
 }

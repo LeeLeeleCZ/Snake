@@ -126,7 +126,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DevInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "DevInfo";
+            this.Text = "Info";
             this.Load += new System.EventHandler(this.DevInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
