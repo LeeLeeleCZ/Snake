@@ -23,7 +23,7 @@ namespace Had
                 devInfo = new DevInfo(this);
                 devInfo.Show();
                 Point point = food.Location;
-                DataSent("Food " + Convert.ToString(point.X / 10) + ":" + Convert.ToString(point.Y / 10));
+                DataSent("Food " + Convert.ToString((point.X / 10) / 2) + ":" + Convert.ToString((point.Y / 10) / 2));
             }
             PøidatDíl();
             PøidatDíl();
@@ -101,7 +101,7 @@ namespace Had
             }
 
             Point point = head.Location;
-            DataSent("Head "+Convert.ToString(point.X / 10) +":"+ Convert.ToString(point.Y / 10));
+            DataSent("Head "+Convert.ToString((point.X / 10)/2) +":"+ Convert.ToString((point.Y / 10)/2));
             if (head.X < 0 || head.X > 760 || head.Y < 0 || head.Y > 740)
             {
                 Konec();
@@ -112,7 +112,7 @@ namespace Had
                 PøidatDíl();
                 food.Next();
                 point = food.Location;
-                DataSent("Food "+Convert.ToString(point.X/10)+":"+Convert.ToString(point.Y/10));
+                DataSent("Food "+Convert.ToString((point.X/10)/2)+":"+Convert.ToString((point.Y/10)/2));
                 DataSent("Skore " + Convert.ToString(skore));
             }
             //this.Text = Convert.ToString(skore);
